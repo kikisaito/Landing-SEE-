@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 export default function Home() {
-  const apkDownloadLink = "#"; 
+  const apkDownloadLink = "/see-app.apk"; 
 
   // Estado para el carrusel de funcionalidades
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -15,7 +15,8 @@ export default function Home() {
       icon: (
         <svg className="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
       ),
-      mockupBg: "bg-indigo-100"
+      mockupBg: "bg-indigo-100",
+      image: "/crisis-log.jpeg"
     },
     {
       title: "Cápsulas de Estabilización",
@@ -23,7 +24,8 @@ export default function Home() {
       icon: (
         <svg className="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
       ),
-      mockupBg: "bg-blue-100"
+      mockupBg: "bg-blue-100",
+      image: "/stabilization-capsules.jpeg"
     },
     {
       title: "Reportes Clínicos PDF",
@@ -31,7 +33,8 @@ export default function Home() {
       icon: (
         <svg className="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
       ),
-      mockupBg: "bg-purple-100"
+      mockupBg: "bg-purple-100",
+      image: "/clinical-reports.jpeg"
     },
     {
       title: "Patrones de Autocuidado",
@@ -39,7 +42,8 @@ export default function Home() {
       icon: (
         <svg className="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
       ),
-      mockupBg: "bg-teal-100"
+      mockupBg: "bg-teal-100",
+      image: "/selfcare-patterns.jpeg"
     }
   ];
 
@@ -85,9 +89,7 @@ export default function Home() {
           <div className="lg:w-5/12 relative group">
             <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500 to-blue-300 rounded-[2.5rem] blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
             <div className="relative bg-slate-100 border-8 border-slate-800 rounded-[2.5rem] h-[600px] w-full max-w-[300px] mx-auto shadow-2xl overflow-hidden flex items-center justify-center">
-              {/* Instrucción para Tony: Reemplazar el src de esta etiqueta img */}
-              {/* <img src="/mockup-home.png" alt="App Dashboard" className="object-cover w-full h-full" /> */}
-              <span className="text-slate-400 font-medium text-center px-4">Espacio para Mockup<br/>(Pantalla Principal)</span>
+              <img src="/hero-mockup.jpeg" alt="App Dashboard" className="object-cover w-full h-full" />
             </div>
           </div>
 
@@ -103,8 +105,15 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col lg:flex-row items-center gap-12">
-            {/* Lista de Features */}
-            <div className="lg:w-1/2 space-y-4">
+            {/* Visualización del Mockup Cambiante (Ahora a la IZQUIERDA) */}
+            <div className="lg:w-1/2 flex justify-center w-full order-2 lg:order-1">
+              <div className={`relative w-full max-w-[320px] h-[650px] rounded-[3rem] border-8 border-slate-800 shadow-2xl overflow-hidden flex items-center justify-center transition-colors duration-500 ${features[currentSlide].mockupBg}`}>
+                 <img src={features[currentSlide].image} alt={features[currentSlide].title} className="object-cover w-full h-full" />
+              </div>
+            </div>
+
+            {/* Lista de Features (Ahora a la DERECHA) */}
+            <div className="lg:w-1/2 space-y-4 order-1 lg:order-2">
               {features.map((feature, index) => (
                 <div 
                   key={index}
@@ -120,14 +129,6 @@ export default function Home() {
                   <p className="text-slate-600 pl-14">{feature.desc}</p>
                 </div>
               ))}
-            </div>
-
-            {/* Visualización del Mockup Cambiante */}
-            <div className="lg:w-1/2 flex justify-center w-full">
-              <div className={`relative w-full max-w-[320px] h-[650px] rounded-[3rem] border-8 border-slate-800 shadow-2xl flex items-center justify-center transition-colors duration-500 ${features[currentSlide].mockupBg}`}>
-                 {/* Instrucción para Tony: Aquí va la imagen dinámica dependiendo del currentSlide */}
-                 <span className="text-slate-500 font-medium text-center px-6">Espacio para Mockup<br/>({features[currentSlide].title})</span>
-              </div>
             </div>
           </div>
         </div>
