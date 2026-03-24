@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 export default function Home() {
-  const apkDownloadLink = "/see-app.apk"; 
+  const apkDownloadLink = "/see_app.apk"; 
 
   // Estado para el carrusel de funcionalidades
   const [currentSlide, setCurrentSlide] = useState(0);
