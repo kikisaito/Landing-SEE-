@@ -155,7 +155,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col items-center">
               <div className="text-xl font-bold mb-2">Nube</div>
-              <div className="text-slate-400">AWS EC2 & S3</div>
+              <div className="text-slate-400">Cloudinary</div>
             </div>
           </div>
         </div>
